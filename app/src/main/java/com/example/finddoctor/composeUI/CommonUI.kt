@@ -43,7 +43,7 @@ fun AppBar(onBackClicked:() -> Unit,title: String)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.baseline_arrow_back_24),
-                contentDescription = "AI",
+                contentDescription = "Back Arrow",
                 modifier = Modifier
                     .width(36.dp)
                     .height(36.dp)

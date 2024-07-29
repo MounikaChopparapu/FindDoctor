@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import com.example.finddoctor.R
 import com.example.finddoctor.composeUI.AppBar
+import com.example.finddoctor.modalClass.SelectionDetails
 import com.example.finddoctor.modalClass.Slot
 import com.example.finddoctor.ui.theme.FindDoctorTheme
 
@@ -37,20 +38,21 @@ class BookSlotFragment : Fragment(R.layout.fragment_book_slot) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<ComposeView>(R.id.composeViewSelSlot).setContent {
             FindDoctorTheme {
-                BookSlotScreen(::navigateToBookSlotFragment,::onBackClicked)
+                BookSlotScreen(::navigateToPatientFragment, ::onBackClicked)
             }
 
         }
     }
 
-    private fun onBackClicked()
-    {
+    private fun onBackClicked() {
         parentFragmentManager.popBackStack()
     }
 
-    private fun navigateToBookSlotFragment(slot: Slot) {
+    private fun navigateToPatientFragment(slot: Slot) {
+        SelectionDetails.selectedSlot = slot
+
         parentFragmentManager.beginTransaction()
-            .replace(R.id.main, SpecalityFragment())
+            .replace(R.id.main, PatientFragment())
             .commit()
     }
 
@@ -58,7 +60,7 @@ class BookSlotFragment : Fragment(R.layout.fragment_book_slot) {
 
 
 @Composable
-fun BookSlotScreen(onSlotSelected: (slot: Slot) -> Unit,onBackClicked:() -> Unit) {
+fun BookSlotScreen(onSlotSelected: (slot: Slot) -> Unit, onBackClicked: () -> Unit) {
     // Fetch doctors based on the selected speciality
     val slots = getSlots()
 

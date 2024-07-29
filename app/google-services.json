@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "424939876240",
+    "project_id": "food-app-caf11",
+    "storage_bucket": "food-app-caf11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424939876240:android:bda5c702c14a1d45348d15",
+        "android_client_info": {
+          "package_name": "com.example.finddoctor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB74NgLdTP3t4sLJ6JJRyCZirFr6nxiXho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
