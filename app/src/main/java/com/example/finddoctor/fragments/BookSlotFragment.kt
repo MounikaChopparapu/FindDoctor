@@ -53,6 +53,7 @@ class BookSlotFragment : Fragment(R.layout.fragment_book_slot) {
 
         parentFragmentManager.beginTransaction()
             .replace(R.id.main, PatientFragment())
+            .addToBackStack(null)
             .commit()
     }
 
@@ -110,9 +111,9 @@ fun SlotCard(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.baseline_access_time_36),
+                painter = painterResource(id = R.drawable.appointment_time),
                 contentDescription = "time",
-                modifier = Modifier.size(64.dp)
+                modifier = Modifier.size(48.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(

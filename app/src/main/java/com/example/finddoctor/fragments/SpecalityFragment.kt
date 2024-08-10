@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -33,8 +34,14 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import com.example.finddoctor.BookedSlotsActivity
 import com.example.finddoctor.R
+import com.example.finddoctor.modalClass.PatientData
 import com.example.finddoctor.modalClass.SelectionDetails
+import com.example.finddoctor.modalClass.Token
 import com.example.finddoctor.ui.theme.FindDoctorTheme
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class SpecalityFragment : Fragment(R.layout.fragment_specality) {
     override fun onViewCreated(view: android.view.View, savedInstanceState: Bundle?) {
@@ -47,6 +54,12 @@ class SpecalityFragment : Fragment(R.layout.fragment_specality) {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        fetchTokenDetails(PatientData.getUserMail(requireContext())!!)
+    }
+
     private fun gotoBookedSlots() {
         startActivity(android.content.Intent(requireContext(), BookedSlotsActivity::class.java))
     }
@@ -55,14 +68,11 @@ class SpecalityFragment : Fragment(R.layout.fragment_specality) {
 
         SelectionDetails.selectedSpeciality = speciality
         parentFragmentManager.beginTransaction()
-            .setCustomAnimations(
-                R.anim.slide_in_right, R.anim.slide_out_left,
-                R.anim.slide_in_left, R.anim.slide_out_right
-            )
             .replace(R.id.main, SelectDoctorFragment())
             .addToBackStack(null)
             .commit()
     }
+
 
 }
 
@@ -83,7 +93,12 @@ fun SpecialitiesScreen(
         "Urology"
     )
 
-    Column {
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+
+        Spacer(modifier = Modifier.height(36.dp))
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -95,12 +110,14 @@ fun SpecialitiesScreen(
             Text(
                 text = "Find Your Doctor",
                 style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.padding(16.dp)
+                color = Color.White
             )
 
+            Spacer(modifier = Modifier.weight(1f))
+
             Image(
-                painter = painterResource(id = R.drawable.baseline_arrow_back_24),
-                contentDescription = "Find Doctor",
+                painter = painterResource(id = R.drawable.ic_history),
+                contentDescription = "History",
                 modifier = Modifier
                     .width(36.dp)
                     .height(36.dp)
@@ -158,4 +175,35 @@ fun SpecialityCard(title: String, onSpecialitySelected: (speciality: String) -> 
 @Composable
 fun PreviewSpecialitiesScreen() {
     SpecialitiesScreen(onSpecialitySelected = {}, onShowBookedSlotsClicked = {})
+}
+
+
+
+fun fetchTokenDetails(userEmail: String) {
+    val database = FirebaseDatabase.getInstance()
+    val databaseReference = database.reference
+
+    // Replace '.' with ',' in email to use as Firebase key
+    val sanitizedEmail = userEmail.replace(".", ",")
+
+    databaseReference.child("users").child(sanitizedEmail).child("tokenDetails")
+        .addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val tokenList = mutableListOf<Token>()
+                for (tokenSnapshot in snapshot.children) {
+                    val token = tokenSnapshot.getValue(Token::class.java)
+                    token?.let { tokenList.add(it) }
+                }
+                SelectionDetails.bookedTokens=tokenList as ArrayList<Token>
+                for (token in tokenList)
+                {
+                    Log.e("Test",token.toString())
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle error
+                Log.e("Firebase", "Failed to fetch token details: ${error.message}")
+            }
+        })
 }

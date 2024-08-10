@@ -1,6 +1,5 @@
 package com.example.finddoctor.composeUI
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -49,7 +48,6 @@ fun AppBar(onBackClicked:() -> Unit,title: String)
                     .height(36.dp)
                     .clickable {
                         onBackClicked.invoke()
-                        Log.e("TAG", "On Back Image Clicked")
                     }
             )
 

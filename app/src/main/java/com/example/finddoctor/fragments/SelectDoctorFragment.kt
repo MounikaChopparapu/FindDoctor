@@ -142,7 +142,42 @@ fun getDoctorsBySpeciality(speciality: String): List<Doctor> {
         "Kidney" -> listOf(
             Doctor("Dr Mohammed Abdelmahamoud", "Kidney", "01642 835853", R.drawable.ic_female)
         )
-        // Add other specialties here
+
+        "Diabetes" -> listOf(
+            Doctor("Dr Mona Abouzaid", "Diabetes and endocrinology", "01642 282739", R.drawable.ic_female),
+            Doctor("Dr Simon Ashwell", "Diabetes and endocrinology", "01642 854307 ext 54307", R.drawable.ic_male)
+        )
+
+        "Orthopaedic" -> listOf(
+            Doctor("Mr Akinwande Adedapo", "Orthopaedic surgery", "01642 850850 ext 55513", R.drawable.ic_male)
+        )
+
+        "Cancer" -> listOf(
+            Doctor("Dr Madhavi Adusumalli", "Cancer", "01642 854750", R.drawable.ic_female),
+            Doctor("Mr Andrew Bartram", "Cancer", "01642 852681", R.drawable.ic_male),
+            Doctor("Dr Eleanor Aynsley", "Cancer", "01642 854911", R.drawable.ic_female)
+        )
+
+        "Neurology" -> listOf(
+            Doctor("Dr Deborah Bathgate", "Neurology", "01642 854408", R.drawable.ic_female),
+            Doctor("Dr Adrian Bergin", "Neurology", "01642 854723", R.drawable.ic_male)
+        )
+
+        "Radiology" -> listOf(
+            Doctor("Dr Mohanad Kareem Aftan", "Radiology", "01642 854786", R.drawable.ic_male),
+            Doctor("Matthew Burgess", "Radiology", "01642 850850 ext 54457", R.drawable.ic_male)
+        )
+
+        "Dermatology" -> listOf(
+            Doctor("Dr Andrew J Carmichael", "Dermatology", "01642 854721", R.drawable.ic_male),
+            Doctor("Dr Jaskiran Azad", "Dermatology", "01642 854709", R.drawable.ic_female)
+        )
+
+        "Urology" -> listOf(
+            Doctor("Mr Chandrasekharan Badrakumar", "Urology", "01642 854712", R.drawable.ic_male)
+        )
+
         else -> emptyList()
     }
+
 }

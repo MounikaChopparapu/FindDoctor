@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import com.example.finddoctor.R
 import com.example.finddoctor.composeUI.AppBar
+import com.example.finddoctor.modalClass.PatientData
 import com.example.finddoctor.modalClass.SelectionDetails
 import com.example.finddoctor.ui.theme.FindDoctorTheme
 import com.google.firebase.database.FirebaseDatabase
@@ -52,7 +53,7 @@ class PatientFragment : Fragment(R.layout.fragment_patient) {
     private fun onSubmitClicked(patientName: String, disease: String) {
         //Save Detail to DB
         saveTokenDetails(
-            "user1@gmail.com",
+            PatientData.getUserMail(requireContext())!!,
             SelectionDetails.selectedSpeciality!!,
             SelectionDetails.selectedDoctor.name,
             SelectionDetails.selectedSlot.tokenTime,
@@ -172,8 +173,8 @@ fun saveTokenDetails(
     val tokenDetails = mapOf(
         "Speciality" to speciality,
         "Doctor" to doctor,
-        "Slot Time" to slotTime,
-        "Patient Name" to patientName,
+        "SlotTime" to slotTime,
+        "PatientName" to patientName,
         "Disease" to disease
     )
 
@@ -184,7 +185,6 @@ fun saveTokenDetails(
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Data saved successfully
-                    println("Token details saved successfully with key $uniqueTokenKey.")
                 } else {
                     // Error occurred
                     task.exception?.let { exception ->

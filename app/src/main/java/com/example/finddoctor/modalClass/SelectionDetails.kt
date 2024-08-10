@@ -6,4 +6,8 @@ object SelectionDetails {
     var selectedDoctor = Doctor()
 
     var selectedSlot = Slot()
+
+    var bookedTokens = ArrayList<Token>()
+
+
 }

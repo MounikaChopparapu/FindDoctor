@@ -3,7 +3,7 @@
 
     <style name="Theme.FindDoctor" parent="android:Theme.Material.Light.NoActionBar" />
 
-    <style name="Theme.AppCompat" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.AppCompat.FindDoctor" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryDark">@color/purple_700</item>
