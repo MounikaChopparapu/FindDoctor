@@ -2,7 +2,6 @@ package com.example.finddoctor
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -31,11 +30,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.finddoctor.composeUI.AppBar
-import com.example.finddoctor.modalClass.PatientData
-import com.example.finddoctor.modalClass.SelectionDetails
-import com.example.finddoctor.modalClass.Token
-import com.example.finddoctor.ui.theme.FindDoctorTheme
 
 class BookedSlotsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -27,8 +27,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.finddoctor.modalClass.PatientData
-import com.example.finddoctor.ui.theme.FindDoctorTheme
 import kotlinx.coroutines.delay
 
 
